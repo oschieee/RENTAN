@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CarAudi from "../images/cars-big/audia1.jpg";
-import CarGolf from "../images/cars-big/golf6.jpg";
-import CarToyota from "../images/cars-big/toyotacamry.jpg";
-import CarBmw from "../images/cars-big/bmw320.jpg";
-import CarMercedes from "../images/cars-big/benz.jpg";
-import CarPassat from "../images/cars-big/passatcc.jpg";
 
 function Booking() {
   const [modal, setModal] = useState(false); 
   const navigate = useNavigate();
   const handleButtonClick = () => {
-    navigate('/kontak');
+    navigate('/sewamobil');
   };
 
   // booking car
