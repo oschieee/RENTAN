@@ -2,29 +2,34 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const LoginPage = () => {
+
+const Register = () => {
 
 const navigate = useNavigate();
   
 const [payload, setPayload] = useState({
   Email: '',
   Password: '',
+  Phone: '+62',
+  Address: '',
 });
 
 const handleChange = (e) => {
   const { value, name } = e.target;
+  
   setPayload({ ...payload, [name]: value });
+
+  
 };
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  // Here you would typically handle the login logic, e.g., API call
   console.log(payload);
   navigate('/home');
 };
 
 const handleClick = () => {
-  navigate('/register');
+  navigate('/');
 };
   return (
     <div className="login-container">
@@ -32,9 +37,9 @@ const handleClick = () => {
         <div className="login-image">
           <img src="" alt="Login" />
         </div>
-        <div className="penyewa-form">
-          <h2><span>Login</span></h2>
-          <p>Welcome back! Log in to your account.</p>
+        <div className="login-form">
+          <h2><span>Register</span></h2>
+          <p>Welcome ! Register your account.</p>
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <i className="fa fa-envelope"></i>
@@ -58,11 +63,34 @@ const handleClick = () => {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className='button-login'>Log in</button>
+            <div className="input-group">
+              <input
+                type="tel"
+                name="Phone"
+                placeholder="Phone"
+                
+                value={payload.Phone}
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <i className="fa fa-lock"></i>
+              <input
+                type="text"
+                name="Address"
+                placeholder="Address"
+                value={payload.Address}
+                required
+                onChange={handleChange}
+              />
+            </div>
+            
+            <button type="submit" className='button'>Register</button>
           </form>
           <button className='button-register' >
               <h6 onClick={handleClick}>
-                belum punya akun?
+                Sudah punya akun?
               </h6>
           </button>
         </div>
@@ -71,4 +99,4 @@ const handleClick = () => {
   );
 }
 
-export default LoginPage;
+export default Register;

@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <>
       <nav>
-        <div class="navbar">
+        <div className="navbar">
           <div className="navbar__img">
             <Link to="/" onClick={() => window.scrollTo(0, 0)}>
               <img src={Logo} alt="logo-img" />
@@ -36,12 +36,7 @@ function Navbar() {
                 Kontak
               </Link>
             </li>
-            <li>
-              {" "}
-              <Link className="longterm-link" to="/jangkapanjang">
-                Sewa Jangka Panjang
-              </Link>
-            </li>
+            
             <li>
               {" "}
               <Link className="penyewa-link" to="/penyewa">
@@ -53,7 +48,7 @@ function Navbar() {
             <Link className="navbar__buttons__sign-in" to="/">
               Sign In
             </Link>
-            <Link className="navbar__buttons__register" to="/">
+            <Link className="navbar__buttons__register" to="/register">
               Register
             </Link>
           </div>
