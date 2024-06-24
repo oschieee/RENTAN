@@ -6,6 +6,7 @@ import SewaMobil from './pages/SewaMobil';
 import LoginPage from './pages/Login';
 import Penyewa from './pages/Penyewa';
 import Register from './pages/Register';
+import OrderDetail from './pages/OrderDetail';
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route index path="/sewamobil" element={<SewaMobil />} />
         <Route index path="/penyewa" element={<Penyewa />} />
         <Route index path="/register" element={<Register />} />
+        <Route index path="/sewamobil/detail" element={<OrderDetail />} />
       </Routes>
       </Router>
     </div>

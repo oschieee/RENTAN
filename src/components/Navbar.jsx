@@ -20,7 +20,7 @@ function Navbar() {
           </div>
           <ul className="navbar__links">
             <li>
-              <Link className="home-link" to="/">
+              <Link className="home-link" to="/home">
                 Beranda
               </Link>
             </li>
