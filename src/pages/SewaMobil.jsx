@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar";
 import CarImg1 from "../images/cars-big/innova.jpg";
 
 import { Link } from "react-router-dom";
@@ -5,6 +6,7 @@ import { Link } from "react-router-dom";
 function SewaMobil() {
   return (
     <>
+    <Navbar/>
       <section className="models-section">
         
         <div className="container">

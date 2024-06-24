@@ -7,6 +7,7 @@ import LoginPage from './pages/Login';
 import Penyewa from './pages/Penyewa';
 import Register from './pages/Register';
 import OrderDetail from './pages/OrderDetail';
+import Payment from './pages/Payment';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route index path="/sewamobil" element={<SewaMobil />} />
         <Route index path="/penyewa" element={<Penyewa />} />
         <Route index path="/register" element={<Register />} />
+        <Route index path="/payment" element={<Payment />} />
         <Route index path="/sewamobil/detail" element={<OrderDetail />} />
       </Routes>
       </Router>

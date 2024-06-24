@@ -651,7 +651,7 @@
     /* justify-content: center;
     align-items: center; */
     height: auto;
-    background-color: #b0b0b0;
+    background-color: #d7d7d7;
   }
   
   .detail-card {
@@ -726,7 +726,7 @@
     width:100%;
     padding: 40px;
     margin-bottom: 20px;
-    background-color: #b0b0b0;
+    background-color: #d7d7d7;
     color: #000;
     display: flex;
   }
@@ -772,7 +772,7 @@
   .payment-card {
     display: flex;
     width: 40%;
-    height: 500px;
+    height: 350px;
     margin-top: 80px;
     background-color: #fff;
     border-radius: 10px;
@@ -808,3 +808,48 @@
     padding: 10px;
     margin: 0;
   }
+  .button-order {
+    width: 460px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #3077C9;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .payment-success{
+    text-align: center;
+    margin-top: 50px;
+  }
+  .spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.5);
+    z-index: 50;
+}
+
+.spinner {
+    height: 32px;
+    width: 32px;
+    border: 4px solid rgba(128, 128, 128, 0.5);
+    border-top: 4px solid rgba(128, 128, 128, 1);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -9,6 +9,9 @@ import { Tab } from 'bootstrap';
 const OrderDetail = () => {
 
 const navigate = useNavigate();
+const handlePlaceOrder = () => {
+    navigate("/payment");
+};
   
 const [payload, setPayload] = useState({
   CarName: 'Toyota Kijang Innova',
@@ -137,10 +140,9 @@ const handleChange = (e) => {
                             </div>
                         </div>
                         </div>
-                        
-                        
+                        <button onClick={handlePlaceOrder} className='button-order'>Place Order</button>
                 </div>
-            </div>
+        </div>
     </div>
     </>
   );
