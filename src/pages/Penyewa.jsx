@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-
+import axios from 'axios';
+import { AuthContext } from '../AuthContext';
 
 const Penyewa = () => {
 
@@ -20,16 +21,34 @@ const [payload, setPayload] = useState({
 
 });
 
+const { token } = useContext(AuthContext);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      console.log(token);
+      const response = await axios.get('http://localhost:3000/api/rental', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        withCredentials: true
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  if (token) {
+    fetchData();
+  }
+}, [token]);
+
 const handleChange = (e) => {
   const { value, name } = e.target;
   setPayload({ ...payload, [name]: value });
 };
-const handleLogin = (e) => {
-    e.preventDefault();
-    // Here you would typically handle the login logic, e.g., API call
-    console.log(payload);
-    navigate('/home');
-  };
+
 
 const handleSubmit = (e) => {
   e.preventDefault();
