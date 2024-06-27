@@ -2,17 +2,20 @@ import React, {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../AuthContext';
+import { useDispatch } from 'react-redux';
+import * as action from "../config/redux/auth/action"
 
 const LoginPage = () => {
 
 const navigate = useNavigate();
+const dispatch = useDispatch()
   
 const [payload, setPayload] = useState({
   email: '',
   password: '',
 });
 
-const {setToken} = useContext(AuthContext);
+// const {setToken} = useContext(AuthContext);
 
 const handleChange = (e) => {
   const { value, name } = e.target;
@@ -24,11 +27,17 @@ const handleSubmit = async (e) => {
   // Here you would typically handle the login logic, e.g., API call
   // console.log(payload);
   try {
-    console.log(payload)
-    const response = await axios.post('http://localhost:3000/auth/login', payload, {withCredentials: true});
-    setToken(response.data);
-    console.log(response.data);
-    navigate('/home');
+    // console.log(payload)
+    // const response = await axios.post('http://localhost:3000/auth/login', payload, {withCredentials: true});
+    // setToken(response.data);
+    // console.log(response.data);
+    const result = await dispatch(action.LoginAction({email: payload.email, password: payload.password}))
+    if(result.error) {
+      console.log(result.message);
+    }
+    else{
+      navigate('/home');
+    }
   } catch (error) {
     console.error('There was an error loggin the user!', error);
   }

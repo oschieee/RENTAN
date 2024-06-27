@@ -10,6 +10,7 @@ import OrderDetail from './pages/OrderDetail';
 import Payment from './pages/Payment';
 import DashboardPenyewa from './pages/Penyewa/DashboardPenyewa';
 import EditVehicle from './pages/Penyewa/EditVehicle';
+import Header from './components/Header';
 
 
 
@@ -17,8 +18,8 @@ import EditVehicle from './pages/Penyewa/EditVehicle';
 function App() {
   return (
     <div className="App">
-        <Router basename="/">
-        
+      {/* <Router basename="/"> */}
+      <Header/>
       <Routes>
         <Route index path="/" element={<LoginPage />} />
         <Route index path="/home" element={<Home />} />
@@ -29,10 +30,8 @@ function App() {
         <Route index path="/sewamobil/detail" element={<OrderDetail />} />
         <Route index path="/DashboardPenyewa" element={<DashboardPenyewa />} />
         <Route index path="/edit/vehicle" element={<EditVehicle />} />
-       
-
       </Routes>
-      </Router>
+      {/* </Router> */}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { API_LOCAL } from "../../API"
+import { Login, SetUser } from "./actionType"
 
 export const LoginAction = (payload) => {
     return async (dispatch) => {
@@ -38,15 +39,18 @@ export const LoginAction = (payload) => {
 
 export const GetUserDetails = (payload) => {
     return async (dispatch) => {
+        console.log("token action", payload.token);
         try {
             let response = await axios({
                 method: "get",
                 url: `${API_LOCAL}/auth/user`,
-                header: {
+                headers: {
                     "Authorization" : `Bearer ${payload.token}`
                 }
             })
 
+            console.log("response", response);
+            console.log("response data", response.data);
             const {username, role_id, id, email} = response.data
 
             dispatch({type: SetUser, payload: {

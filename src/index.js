@@ -4,13 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './AuthContext';
+import { Provider } from 'react-redux';
+import store from './config/redux/store';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    {/* <AuthProvider> */}
+    <Provider store={store}>
+      <BrowserRouter>
+        <App store={store}/>
+      </BrowserRouter>
+    </Provider>
+    {/* </AuthProvider> */}
   </React.StrictMode>
 );
 
