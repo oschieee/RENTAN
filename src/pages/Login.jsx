@@ -29,13 +29,10 @@ const handleSubmit = async (e) => {
     setToken(response.data);
     console.log(response.data);
     navigate('/home');
-    console.log(response.data);
   } catch (error) {
     console.error('There was an error loggin the user!', error);
   }
-  
 };
-console.log(payload);
 
 const handleClick = () => {
   navigate('/register');
