@@ -334,7 +334,8 @@
     gap: 3rem;
     align-items: center;
     text-align: center;
-    padding: 10rem 0;
+
+    padding: 10px;
     max-width: 110rem;
     margin: 0 auto;
   }
@@ -492,9 +493,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .login-image {
+  .login-kiri {
     width: 50%;
-    /* background: url('path/to/your/image.jpg') center/cover no-repeat; */
+    padding: 40px;
+    margin-top: 40px;
+    background-color: transparent;
+    display: flex;
+    
   }
   
   .login-form {
@@ -540,6 +545,14 @@
     border-bottom-color: #b0b0b0;
     outline: none;
   }
+  .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #b0b0b0;
+    background-color: transparent;
+    color: #010103;
+  }
   
   .button-login {
     width: 100%;
@@ -571,6 +584,7 @@
   .penyewa-form{
     width: 50%;
     margin-top:45px;
+    
     padding: 40px;
     color: #010103;
   }
@@ -589,18 +603,31 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     /* background-color: #2b2b2b; */
   }
   .penyewa-card {
     display: flex;
     width: 1150px;
+    
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: #f1f1f1;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .button-penyewa {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    
+    border-radius: 5px;
+    background-color: #3077C9;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
   }
   .penyewa-kiri{
     width: 50%;
@@ -852,4 +879,84 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.register-form {
+  
+  padding: 40px;
+  color: #010103;
+  align-items: center;
+  text-align: center;
+}
+
+.register-form h2 {
+  margin-bottom: 10px;
+}
+
+.register-form h2 span {
+  font-weight: bold;
+}
+
+.register-form p {
+  margin-bottom: 20px;
+  color: #b0b0b0;
+}
+
+.register-box{
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  
+}
+.register-flex {
+  width: 1000px;
+  display: flex;
+  gap: 10px;
+  
+}
+.register-options{
+  border: 0.5px solid;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+.register-box button{
+  margin-right: 5px;
+  border: 0.5px solid;
+  padding: 10px;
+  max-height: 50px;
+  text-align: center;
+}
+.register-box label{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button-edit-dashboard {
+  background-color: #3077C9;
+  color: white;
+  
+  border-radius: 0.3rem;
+  box-shadow: 0 10px 15px 0 rgba(34, 89, 185, 0.6);
+  transition: all 0.3s;
+  border: 2px solid #3077C9;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.button-edit-dashboard:hover {
+  box-shadow: 0 10px 15px 0 rgba(34, 89, 185, 0.6);
+  background-color: #3077C9;
+}
+
+.button-edit-dashboard a {
+  text-decoration: none;
+  color: white;
+  
+}
+.my-vehicles{
+  margin-top: 20px;
+  padding: 10px;
 }

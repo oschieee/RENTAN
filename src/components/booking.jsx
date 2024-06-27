@@ -96,7 +96,7 @@ function Booking() {
     doneMsg.style.display = "flex";
   };
 
-  
+ 
   const handleCar = (e) => {
     setCarType(e.target.value);
     setCarImg(e.target.value);

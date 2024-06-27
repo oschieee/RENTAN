@@ -9,11 +9,13 @@ const AuthProvider = ({ children }) => {
 
     const setToken = (token) => {
         console.log('Setting token:', token); // Add this line
+        localStorage.setItem('token', token);
         dispatch({ type: 'SET_TOKEN', payload: token });
     };
 
     const clearToken = () => {
         console.log('Clearing token'); // Add this line
+        localStorage.removeItem('token');
         dispatch({ type: 'CLEAR_TOKEN' });
     };
 

@@ -1,26 +1,25 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 import axios from 'axios';
-import { AuthContext } from '../AuthContext';
+import { AuthContext } from '../../AuthContext';
 
-const Penyewa = () => {
+const EditVehicle = () => {
 
 const navigate = useNavigate();
   
 const [payload, setPayload] = useState({
-  name:'',
-  image: '',
-  price:'',
-  description: '',
-  yearManufacture: '',
-  vehicleTypeId:'',
-  transmissionId:'',
+  Email: '',
+  Password: '',
+  Username: '',
+  Name: '',
+  Phone: '+62',
+  Address: '',
+  Image: '',
+  Type: '',
+  Year: '',
+
 });
-
-const [vehicleType, setVehicleType] = useState([]);
-const [transmission, setTransmission] = useState([]);
-
 
 const { token } = useContext(AuthContext);
 
@@ -28,34 +27,22 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       console.log(token);
-      const response = await axios.get('http://localhost:3000/api/vehicletype/', {
+      const response = await axios.get('http://localhost:3000/api/rental', {
         headers: {
-          Authorization: `Bearer ${token.token}`
+          Authorization: `Bearer ${token}`
         },
         withCredentials: true
       });
-      setVehicleType(response.data);
-      const response2 = await axios.get('http://localhost:3000/api/transmission/', {
-        headers: {
-          Authorization: `Bearer ${token.token}`
-        },
-        withCredentials: true
-      });
-      setTransmission(response2.data);
-      console.log(response2.data)
-
       console.log(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
-  
 
   if (token) {
     fetchData();
   }
 }, [token]);
-
 
 const handleChange = (e) => {
   const { value, name } = e.target;
@@ -63,26 +50,17 @@ const handleChange = (e) => {
 };
 
 
-const handleSubmit = async(e) => {
+const handleSubmit = (e) => {
   e.preventDefault();
-  console.log("payload", payload);
   // Here you would typically handle the login logic, e.g., API call
-  try {
-    const response = await axios.post('http://localhost:3000/api/vehicle/', payload, {withCredentials: true,  headers: {
-      Authorization: `Bearer ${token.token}`
-    },});
-    console.log(response);
-  } catch (error) {
-    console.error('There was an error loggin the user!', error);
-  }
+  console.log(payload);
+  navigate('/home');
 };
 
   return (
     <>
     <Navbar/>
     <div className="penyewa-container">
-      
-
       <div className="penyewa-card">
         <div className='penyewa-kiri'> 
         <h2><span>Data Kendaraan</span></h2>
@@ -91,9 +69,9 @@ const handleSubmit = async(e) => {
               <i className="fa fa-envelope"></i>
               <input
                 type="text"
-                name="name"
-                placeholder="name"
-                value={payload.name}
+                name="Nama Kendaraan"
+                placeholder="Nama Kendaraan"
+                value={payload.NamaKendaraan}
                 required
                 onChange={handleChange}
               />
@@ -102,9 +80,9 @@ const handleSubmit = async(e) => {
               <i className="fa fa-envelope"></i>
               <input
                 type="text"
-                name="description"
-                placeholder="description"
-                value={payload.description}
+                name="Description"
+                placeholder="Description"
+                value={payload.Description}
                 required
                 onChange={handleChange}
               />
@@ -113,27 +91,12 @@ const handleSubmit = async(e) => {
               <i className="fa fa-envelope"></i>
               <input
                 type="number"
-                name="price"
-                placeholder="price"
-                value={payload.price}
+                name="Harga"
+                placeholder="Harga"
+                value={payload.Description}
                 required
                 onChange={handleChange}
               />
-            </div>
-            <div className="input-group">
-              <i className="fa fa-envelope"></i>
-              <select
-                name="vehicleTypeId"
-                className='dropdown-car-type'
-                // value={payload.transmission}
-                required
-                onChange={handleChange}
-              >
-                {vehicleType.map((type) => (
-                  <option value={type._id}>{type.vehicleName}</option>
-                )) 
-                }
-              </select>
             </div>
             
             
@@ -142,25 +105,25 @@ const handleSubmit = async(e) => {
           <form onSubmit={handleSubmit}>
             <div className="input-image">    
             <select
-                name="transmissionId"
+                name="Tipe"
                 className='dropdown-car-type'
-                // value={payload.TransmissionName}
+                value={payload.Type}
                 required
                 onChange={handleChange}
               >
-                {transmission.map((transmission) => (
-                  <option value={transmission._id}>{transmission.transmissionName}</option>
-                )) 
-                }
+                <option value="default">--pilih jenis--</option>
+                <option value="car">Car</option>
+                <option value="motor">Motor</option>
+                <option value="bus">Bus</option>
               </select>
             </div>
             <div className="input-group">
               <i className="fa fa-lock"></i>
               <input
                 type="text"
-                name="yearManufacture"
+                name="Tahun Pembuatan"
                 placeholder="Tahun Pembuatan"
-                value={payload.yearManufacture}
+                value={payload.Year}
                 required
                 onChange={handleChange}
               />
@@ -169,9 +132,9 @@ const handleSubmit = async(e) => {
             <p>Image</p>
               <input
                 type="file"
-                name="image"
-                placeholder="Gambar Kendaraan"
-                value={payload.image}
+                name="Image"
+                placeholder="Image"
+                value={payload.Image}
                 required
                 onChange={handleChange}
               />
@@ -190,4 +153,4 @@ const handleSubmit = async(e) => {
   );
 }
 
-export default Penyewa;
+export default EditVehicle;
