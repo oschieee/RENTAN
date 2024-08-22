@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import { AuthContext } from '../AuthContext';
+import { useSelector } from 'react-redux';
 
 const Penyewa = () => {
 
@@ -22,7 +23,8 @@ const [vehicleType, setVehicleType] = useState([]);
 const [transmission, setTransmission] = useState([]);
 
 
-const { token } = useContext(AuthContext);
+// const { token } = useContext(AuthContext);
+const {token} = useSelector((state) => state.Auth.user)
 
 useEffect(() => {
   const fetchData = async () => {
@@ -30,14 +32,14 @@ useEffect(() => {
       console.log(token);
       const response = await axios.get('http://localhost:3000/api/vehicletype/', {
         headers: {
-          Authorization: `Bearer ${token.token}`
+          Authorization: `Bearer ${token}`
         },
         withCredentials: true
       });
       setVehicleType(response.data);
       const response2 = await axios.get('http://localhost:3000/api/transmission/', {
         headers: {
-          Authorization: `Bearer ${token.token}`
+          Authorization: `Bearer ${token}`
         },
         withCredentials: true
       });
@@ -67,14 +69,14 @@ const handleSubmit = async(e) => {
   e.preventDefault();
   console.log("payload", payload);
   // Here you would typically handle the login logic, e.g., API call
-  try {
-    const response = await axios.post('http://localhost:3000/api/vehicle/', payload, {withCredentials: true,  headers: {
-      Authorization: `Bearer ${token.token}`
-    },});
-    console.log(response);
-  } catch (error) {
-    console.error('There was an error loggin the user!', error);
-  }
+  // try {
+  //   const response = await axios.post('http://localhost:3000/api/vehicle/', payload, {withCredentials: true,  headers: {
+  //     Authorization: `Bearer ${token.token}`
+  //   },});
+  //   console.log(response);
+  // } catch (error) {
+  //   console.error('There was an error loggin the user!', error);
+  // }
 };
 
   return (
@@ -121,7 +123,7 @@ const handleSubmit = async(e) => {
               />
             </div>
             <div className="input-group">
-              <i className="fa fa-envelope"></i>
+              
               <select
                 name="vehicleTypeId"
                 className='dropdown-car-type'

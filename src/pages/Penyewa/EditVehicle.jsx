@@ -1,12 +1,15 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import axios from 'axios';
 import { AuthContext } from '../../AuthContext';
+import { useSelector } from 'react-redux';
+import { data } from 'autoprefixer';
 
 const EditVehicle = () => {
-
-const navigate = useNavigate();
+  const { id } = useParams();
+  const navigate = useNavigate();
+  
   
 const [payload, setPayload] = useState({
   Email: '',
@@ -21,18 +24,24 @@ const [payload, setPayload] = useState({
 
 });
 
-const { token } = useContext(AuthContext);
+// const { token } = useContext(AuthContext);
+const {token} = useSelector((state) => state.Auth.user)
+const [data, setData] = useState({})
+
+console.log("token get data", token);
+
 
 useEffect(() => {
   const fetchData = async () => {
     try {
       console.log(token);
-      const response = await axios.get('http://localhost:3000/api/rental', {
+      const response = await axios.get(`http://localhost:3000/api/vehicle/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         },
         withCredentials: true
       });
+      setData(response.data)
       console.log(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -43,6 +52,9 @@ useEffect(() => {
     fetchData();
   }
 }, [token]);
+
+console.log("data", data);
+
 
 const handleChange = (e) => {
   const { value, name } = e.target;
@@ -143,7 +155,7 @@ const handleSubmit = (e) => {
 
             <div>
             </div>
-            <button className="button-penyewa" type="submit">Submit</button>
+            <button className="button-penyewa" type="submit" onClick={handleSubmit}>Submit</button>
           </form>
           
         </div>

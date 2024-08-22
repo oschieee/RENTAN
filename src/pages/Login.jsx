@@ -24,10 +24,8 @@ const handleChange = (e) => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-  // Here you would typically handle the login logic, e.g., API call
-  // console.log(payload);
   try {
-    // console.log(payload)
+    console.log(payload)
     // const response = await axios.post('http://localhost:3000/auth/login', payload, {withCredentials: true});
     // setToken(response.data);
     // console.log(response.data);

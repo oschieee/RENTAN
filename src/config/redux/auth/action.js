@@ -1,6 +1,7 @@
 import axios from "axios"
 import { API_LOCAL } from "../../API"
-import { Login, SetUser } from "./actionType"
+import { Login, SetUser, Logout } from "./actionType"
+
 
 export const LoginAction = (payload) => {
     return async (dispatch) => {
@@ -65,3 +66,7 @@ export const GetUserDetails = (payload) => {
         }
     }
 }
+
+export const logoutUser = () => ({
+    type: Logout,
+});

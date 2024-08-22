@@ -30,7 +30,16 @@ const AuthReducer = (state = initialState, {type, payload}) => {
                     ...payload
                 }
             }
-
+        case actionType.Logout: 
+            return {
+                ...state,
+                user: {
+                username: '',
+                token: null,
+                isLoggedIn: false,
+                role_id: '',
+                },
+            }
         default:
             return { ...state}
     }

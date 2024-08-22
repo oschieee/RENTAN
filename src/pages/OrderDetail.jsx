@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import CarImg1 from "../images/cars-big/innova.jpg";
 import Navbar from '../components/Navbar';
-import { Tab } from 'bootstrap';
-
-
 
 const OrderDetail = () => {
 
@@ -85,17 +82,11 @@ const handleChange = (e) => {
                 <h6>
                     Rp. 770.000
                 </h6>
-            </div>
-            
+            </div> 
         </div>
-        
-        </div>
-            
-            
+        </div> 
           </form>
-          
         </div>
-        
         </div>
         <div className='payment-card'>
                 <div className='payment-detail-form'>

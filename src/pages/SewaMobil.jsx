@@ -2,37 +2,33 @@ import { useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import CarImg1 from "../images/cars-big/innova.jpg";
 import axios from 'axios';
-
 import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 
-
-
-
 function SewaMobil() {
 
-const { token } = useContext(AuthContext);
+// const { token } = useContext(AuthContext);
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      console.log(token);
-      const response = await axios.get('http://localhost:3000/api/vehicle', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        withCredentials: true
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       console.log(token);
+//       const response = await axios.get('http://localhost:3000/api/vehicle', {
+//         headers: {
+//           Authorization: `Bearer ${token}`
+//         },
+//         withCredentials: true
+//       });
+//       console.log(response.data);
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//     }
+//   };
 
-  if (token) {
-    fetchData();
-  }
-}, [token]);
+//   if (token) {
+//     fetchData();
+//   }
+// }, [token]);
 
   return (
     <>

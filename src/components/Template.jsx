@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import BgShape from "../images/hero/home-circle.png";
 import BannerCar from "../images/hero/banner-car.png";
 import { useEffect, useState } from "react";
@@ -10,11 +9,6 @@ function Template() {
     window.scrollTo({ top: (0, 0), behavior: "smooth" });
   };
 
-  const bookBtn = () => {
-    document
-      .querySelector("#booking-section")
-      .scrollIntoView({ behavior: "smooth" });
-  };
 
   useEffect(() => {
     const onPageScroll = () => {

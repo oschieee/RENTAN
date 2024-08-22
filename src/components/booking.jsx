@@ -15,50 +15,6 @@ function Booking() {
   const [pickTime, setPickTime] = useState("");
   const [dropTime, setDropTime] = useState("");
   const [carImg, setCarImg] = useState("");
-
-  // modal infos
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [age, setAge] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [zipcode, setZipCode] = useState("");
-
-  // taking value of modal inputs
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleLastName = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const handlePhone = (e) => {
-    setPhone(e.target.value);
-  };
-
-  const handleAge = (e) => {
-    setAge(e.target.value);
-  };
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleAddress = (e) => {
-    setAddress(e.target.value);
-  };
-
-  const handleCity = (e) => {
-    setCity(e.target.value);
-  };
-
-  const handleZip = (e) => {
-    setZipCode(e.target.value);
-  };
-
   
   const openModal = (e) => {
     e.preventDefault();
