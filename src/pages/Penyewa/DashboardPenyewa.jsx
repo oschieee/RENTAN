@@ -56,7 +56,7 @@ console.log("data", data);
           {data.map((d) => (
             <div className="models-div__box">
               <div className="models-div__box__img">
-                <img src={d.image} alt="car_img" />
+                <img src={`http://localhost:3000/uploads/${d.image}`} alt="car_img" />
                 <div className="models-div__box__descr">
                   <div className="models-div__box__descr__name-price">
                     <div className="models-div__box__descr__name-price__name">
@@ -68,21 +68,16 @@ console.log("data", data);
                     </div>
                   </div>
                   <div className="models-div__box__descr__name-price__details">
-                    <span>
-                      <i className="fa-solid fa-car-side"></i> &nbsp; Toyota
+                    <span style={{ textAlign: "center" }}>
+                      {d.transmissionId.transmissionName} &nbsp; <i className="fa-solid fa-car-side"></i>
                     </span>
-                    <span style={{ textAlign: "right" }}>
-                      {d.transmissionId.transmissionId} &nbsp; <i className="fa-solid fa-car-side"></i>
-                    </span>
-                    <span style={{ textAlign: "right" }}>
+                    <span style={{ textAlign: "center" }}>
                       {d.vehicleTypeId.vehicleName} &nbsp; <i className="fa-solid fa-car-side"></i>
                     </span>
-                    <span>
-                      <i className="fa-solid fa-car-side"></i> &nbsp; Matic
-                    </span>
-                    <span style={{ textAlign: "right" }}>
+                    <span style={{ textAlign: "center" }}>
                       {d.yearManufacture} &nbsp; <i className="fa-solid fa-car-side"></i>
                     </span>
+                    
                   </div>
                   <div className="button-edit-dashboard">
                     <Link  to={`/edit/vehicle/${d._id}`}>

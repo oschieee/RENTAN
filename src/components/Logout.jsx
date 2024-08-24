@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as action from "../config/redux/auth/action"
 import { useDispatch } from 'react-redux';
+import { FaUser } from 'react-icons/fa';
 
 const ProfileButton = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -19,10 +20,9 @@ const ProfileButton = () => {
     <div className="relative inline-block text-left">
       <button
         onClick={toggleDropdown}
-        className="inline-flex justify-center w-10 h-10 rounded-full bg-blue-500 text-white focus:outline-none"
+        className="profile-button"
       >
-        {/* Placeholder for profile image or icon */}
-        <span className="text-xl font-bold">P</span>
+         <FaUser className="icon" />
       </button>
 
       {isDropdownOpen && (

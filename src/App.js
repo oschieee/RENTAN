@@ -12,6 +12,7 @@ import DashboardPenyewa from './pages/Penyewa/DashboardPenyewa';
 import EditVehicle from './pages/Penyewa/EditVehicle';
 import Header from './components/Header';
 import MyBooking from './pages/MyBooking';
+import AdminPage from './pages/Admin/AdminPage';
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route index path="/penyewa" element={<Penyewa />} />
         <Route index path="/register" element={<Register />} />
         <Route index path="/payment" element={<Payment />} />
+        <Route index path="/admin" element={<AdminPage />} />
         <Route index path="/mybooking" element={<MyBooking />} />
         <Route index path="/sewamobil/detail" element={<OrderDetail />} />
         <Route index path="/dashboardpenyewa" element={<DashboardPenyewa />} />

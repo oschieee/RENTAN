@@ -1,12 +1,11 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Booking() {
   const [modal, setModal] = useState(false); 
   const navigate = useNavigate();
-  const handleButtonClick = () => {
-    navigate('/sewamobil');
-  };
 
   // booking car
   const [carType, setCarType] = useState("");
@@ -15,6 +14,9 @@ function Booking() {
   const [pickTime, setPickTime] = useState("");
   const [dropTime, setDropTime] = useState("");
   const [carImg, setCarImg] = useState("");
+
+  console.log("select filter", carType, pickTime, dropTime);
+
   
   const openModal = (e) => {
     e.preventDefault();
@@ -44,6 +46,57 @@ function Booking() {
     }
   }, [modal]);
 
+  const {token} = useSelector((state) => state.Auth.user)
+  const [data, setData] = useState([])
+
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    try {
+      console.log(token);
+      const requirements = {
+        status: 'Available',
+        pickUp: pickTime,
+        dropOff: dropTime,
+        vehicleType: carType,
+        location: dropOff
+      };
+
+      console.log("req", requirements);
+      
+      const response = await axios.post('http://localhost:3000/api/rental_filter', {
+        requirements: requirements
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        withCredentials: true
+      });
+      setData(response.data)
+      console.log(response.data);
+      navigate('/sewamobil', {state: 
+        {
+          data: response.data,
+          pickUp: pickTime,
+          dropOff: dropTime
+        }});
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  const formatDateForDisplay = (isoString) => {
+    if (!isoString) return "";
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  console.log("data rental", data);
+  
+
   
   const confirmBooking = (e) => {
     e.preventDefault();
@@ -66,16 +119,28 @@ function Booking() {
     setDropOff(e.target.value);
   };
 
+  const formatForInput = (isoString) => {
+    if (!isoString) return "";
+    const date = new Date(isoString);
+    return date.toISOString().slice(0, 16);
+  };
+
+  // Converts input value to ISO string
+  const parseToISO = (inputValue) => {
+    const date = new Date(inputValue);
+    return isNaN(date.getTime()) ? "" : date.toISOString();
+  };
+
   const handlePickTime = (e) => {
-    setPickTime(e.target.value);
+    const isoString = parseToISO(e.target.value);
+    setPickTime(isoString);
   };
 
   const handleDropTime = (e) => {
-    setDropTime(e.target.value);
+    const isoString = parseToISO(e.target.value);
+    setDropTime(isoString);
   };
 
-
- 
   const hideMessage = () => {
     const doneMsg = document.querySelector(".booking-done");
     doneMsg.style.display = "none";
@@ -136,7 +201,7 @@ function Booking() {
                   </label>
                   <select value={dropOff} onChange={handleDrop}>
                     <option>Lokasi</option>
-                    <option>DKI Jakarta</option>
+                    <option>Jakarta</option>
                     <option>Bali</option>
                     <option>Bandung</option>
                     <option>Jogjakarta</option>
@@ -151,7 +216,7 @@ function Booking() {
                   </label>
                   <input
                     id="picktime"
-                    value={pickTime}
+                    value={formatDateForDisplay(pickTime)}
                     onChange={handlePickTime}
                     type="date"
                   ></input>
@@ -164,13 +229,13 @@ function Booking() {
                   </label>
                   <input
                     id="droptime"
-                    value={dropTime}
+                    value={formatDateForDisplay(dropTime)}
                     onChange={handleDropTime}
                     type="date"
                   ></input>
                 </div>
 
-                <button onClick={handleButtonClick} type="submit">
+                <button onClick={handleSubmit} type="submit">
                   Search
                 </button>
               </form>

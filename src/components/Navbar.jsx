@@ -17,22 +17,29 @@ function Navbar() {
     <>
       <nav>
         <div className="navbar">
-          {role_id=="penyewa"?(
-            <div className="navbar__img">
-            <Link to="/dashboardpenyewa" onClick={() => window.scrollTo(0, 0)}>
-              <img src={Logo} alt="logo-img" />
-            </Link>
-          </div>
-          ):(
-            <div className="navbar__img">
-            <Link to="/home" onClick={() => window.scrollTo(0, 0)}>
-              <img src={Logo} alt="logo-img" />
-            </Link>
-          </div>
-          )}
+        {role_id === "penyewa" ? (
+  <div className="navbar__img">
+    <Link to="/dashboardpenyewa" onClick={() => window.scrollTo(0, 0)}>
+      <img src={Logo} alt="logo-img" />
+    </Link>
+  </div>
+) : role_id === "admin" ? (
+  <div className="navbar__img">
+    <Link to="/admin" onClick={() => window.scrollTo(0, 0)}>
+      <img src={Logo} alt="logo-img" />
+    </Link>
+  </div>
+) : (
+  <div className="navbar__img">
+    <Link to="/home" onClick={() => window.scrollTo(0, 0)}>
+      <img src={Logo} alt="logo-img" />
+    </Link>
+  </div>
+)}
+
           
           <ul className="navbar__links">
-            {role_id=="penyewa"?(
+            {/* {role_id=="penyewa"?(
               <li>
               <Link className="home-link" to="/dashboardpenyewa">
                 Beranda
@@ -44,7 +51,7 @@ function Navbar() {
                 Beranda
               </Link>
             </li>
-            )}
+            )} */}
             {/* <li>
               {" "}
               <Link className="about-link" to="/tentangkami">

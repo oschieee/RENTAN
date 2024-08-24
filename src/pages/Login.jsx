@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react';
+import Logo from "../images/logo/logo.png";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../AuthContext';
@@ -25,21 +26,23 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    console.log(payload)
-    // const response = await axios.post('http://localhost:3000/auth/login', payload, {withCredentials: true});
-    // setToken(response.data);
-    // console.log(response.data);
-    const result = await dispatch(action.LoginAction({email: payload.email, password: payload.password}))
-    if(result.error) {
+    console.log(payload);
+    
+    // Dispatch the login action
+    const result = await dispatch(action.LoginAction({ email: payload.email, password: payload.password }));
+    console.log("result", result);
+    
+    if (result.error) {
+      // Handle the error case
       console.log(result.message);
-    }
-    else{
-      navigate('/home');
+      // Optionally show an error message to the user
     }
   } catch (error) {
-    console.error('There was an error loggin the user!', error);
+    console.error('There was an error logging the user!', error);
+    // Optionally show an error message to the user
   }
 };
+
 
 const handleClick = () => {
   navigate('/register');
@@ -49,7 +52,7 @@ const handleClick = () => {
     <div className="login-container">
       <div className="login-card">
         <div className="login-image">
-          <img src="" alt="Login" />
+          <img src={Logo} alt="Login" />
         </div>
         <div className="penyewa-form">
           <h2><span>Login</span></h2>

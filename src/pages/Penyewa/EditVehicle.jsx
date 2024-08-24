@@ -119,7 +119,7 @@ const handleSubmit = (e) => {
             <select
                 name="Tipe"
                 className='dropdown-car-type'
-                value={payload.Type}
+                // value={payload.Type}
                 required
                 onChange={handleChange}
               >

@@ -21,7 +21,7 @@ const Register = () => {
 
   const [userType, setUserType] = useState("");
  
-
+  const [roleOptions, setRoleOptions] = useState([]);
   const handleChange = (e) => {
     const { value, name } = e.target;
     setPayload({ ...payload, [name]: value });
@@ -39,6 +39,21 @@ const Register = () => {
       console.error('There was an error registering the user!', error);
     }
   };
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/rolemanagement/');
+        console.log(response.data);
+        
+        setRoleOptions(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    
+    fetchData();
+  }, []);
 
   const handleClick = () => {
     navigate('/');
@@ -59,10 +74,11 @@ const Register = () => {
                onChange={handleChange}
                required
                >
-                    <option>Pilih Tipe User</option>
-                    <option value="667d686d33bf2df9b6d14f88">Pembeli</option>
-                    <option value="667d686d33bf2df9b6d14f87">Penyewa</option>
-                    
+                  <option value="">Pilih Tipe User</option>
+                    {roleOptions.map(role => (
+                      <option key={role._id} value={role._id}>
+                        {role.name}
+                  </option>))}
                   </select>
             </div>
             <div className="input-group">

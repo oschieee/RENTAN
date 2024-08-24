@@ -2,40 +2,40 @@ import React, { useState, useEffect, useContext } from "react";
 import PaymentSpin from "../components/PaymentSpin";
 import Navbar from "../components/Navbar";
 import axios from 'axios';
+import { useSelector } from "react-redux";
 // import { AuthContext } from "../AuthContext";
 
 const Payment = () => {
     const [loading, setLoading] = useState(true);
     const [success, setSuccess] = useState(false);
+    const {token} = useSelector((state) => state.Auth.user)
 
-    // const { token } = useContext(AuthContext);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                console.log(token);
+                const response = await axios.get('http://localhost:3000/api/transaction', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                withCredentials: true
+                });
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            };
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             console.log(token);
-    //             const response = await axios.get('http://localhost:3000/api/transaction', {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`
-    //             },
-    //             withCredentials: true
-    //             });
-    //             console.log(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //         };
+        if (token) {
+        fetchData();
+        }
+        const timer = setTimeout(() => {
+            setLoading(false);
+            setSuccess(true);
+        }, 3000);
 
-    //     if (token) {
-    //     fetchData();
-    //     }
-    //     const timer = setTimeout(() => {
-    //         setLoading(false);
-    //         setSuccess(true);
-    //     }, 3000);
-
-    //     return () => clearTimeout(timer);
-    // }, [token]);
+        return () => clearTimeout(timer);
+    }, [token]);
 
     return (
         <>
