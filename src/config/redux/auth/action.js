@@ -5,38 +5,53 @@ import { Login, SetUser, Logout } from "./actionType"
 
 export const LoginAction = (payload) => {
     return async (dispatch) => {
-        try{
-            let response = await axios({
-                method: "post",
-                url: `${API_LOCAL}/auth/login`,
+        try {
+            const response = await axios({
+                method: 'post',
+                url: `${API_LOCAL}/auth/login`, // Adjust API_LOCAL to your actual backend URL
                 data: {
                     email: payload.email,
                     password: payload.password
                 }
-            })
+            });
 
-            localStorage.setItem("token", response.data.token)
-            const {username, role_id} = response.data.payload;
-            dispatch({type: Login, payload: {username, role_id, token: response.data.token}})
+            // Save the token to localStorage
+            localStorage.setItem('token', response.data.token);
 
+            // Extract and dispatch user details
+            const { username, role_id } = response.data.payload;
+            dispatch({ 
+                type: Login, 
+                payload: { 
+                    username, 
+                    role_id, 
+                    token: response.data.token 
+                } 
+            });
+
+            // Return success response
             return {
                 error: false,
-                message: "Successfully Login"
-            }
-        }catch(error){
-            if(error.response.status == 404){
-                return{
+                message: 'Successfully Logged In'
+            };
+
+        } catch (error) {
+            // Handle specific error codes or default to a generic message
+            if (error.response && error.response.status === 404) {
+                return {
                     error: true,
                     message: error.response.data
-                }
+                };
             }
+
             return {
                 error: true,
-                message: error.message
-            }
+                message: error.message || 'An error occurred during login'
+            };
         }
-    }
-}
+    };
+};
+
 
 export const GetUserDetails = (payload) => {
     return async (dispatch) => {
