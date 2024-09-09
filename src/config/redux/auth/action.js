@@ -12,7 +12,8 @@ export const LoginAction = (payload) => {
                 data: {
                     email: payload.email,
                     password: payload.password
-                }
+                },
+                withCredentials: true,
             });
 
             // Save the token to localStorage
