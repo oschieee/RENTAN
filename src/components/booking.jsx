@@ -64,7 +64,7 @@ function Booking() {
 
       console.log("req", requirements);
       
-      const response = await axios.post('http://localhost:3000/api/rental_filter', {
+      const response = await axios.post('https://rentan-be.vercel.app/api/rental_filter', {
         requirements: requirements
       }, {
         headers: {

@@ -14,7 +14,7 @@ const Payment = () => {
         const fetchData = async () => {
             try {
                 console.log(token);
-                const response = await axios.get('http://localhost:3000/api/transaction', {
+                const response = await axios.get('https://rentan-be.vercel.app/api/transaction', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },

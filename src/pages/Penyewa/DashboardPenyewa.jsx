@@ -20,7 +20,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       console.log(token);
-      const response = await axios.get('http://localhost:3000/api/vehicle', {
+      const response = await axios.get('https://rentan-be.vercel.app/api/vehicle', {
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -56,7 +56,7 @@ console.log("data", data);
           {data.map((d) => (
             <div className="models-div__box">
               <div className="models-div__box__img">
-                <img src={`http://localhost:3000/uploads/${d.image}`} alt="car_img" />
+                <img src={`https://rentan-be.vercel.app/uploads/${d.image}`} alt="car_img" />
                 <div className="models-div__box__descr">
                   <div className="models-div__box__descr__name-price">
                     <div className="models-div__box__descr__name-price__name">

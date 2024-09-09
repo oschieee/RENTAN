@@ -31,7 +31,7 @@ const Register = () => {
     e.preventDefault();
     try {
       console.log(payload)
-      const response = await axios.post('http://localhost:3000/auth/register', payload, {withCredentials: true});
+      const response = await axios.post('https://rentan-be.vercel.app/auth/register', payload, {withCredentials: true});
       console.log(response.data);
       console.log("ini response",response);
       navigate('/');
@@ -43,7 +43,7 @@ const Register = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/rolemanagement/');
+        const response = await axios.get('https://rentan-be.vercel.app/api/rolemanagement/');
         console.log(response.data);
         
         setRoleOptions(response.data);

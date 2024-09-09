@@ -35,7 +35,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       console.log(token);
-      const response = await axios.get('http://localhost:3000/api/vehicletype/', {
+      const response = await axios.get('https://rentan-be.vercel.app/api/vehicletype/', {
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -43,7 +43,7 @@ useEffect(() => {
       });
       setVehicleType(response.data);
       setPayload({ ...payload, ["vehicleTypeId"]: response?.data[0]._id });
-      const response2 = await axios.get('http://localhost:3000/api/transmission/', {
+      const response2 = await axios.get('https://rentan-be.vercel.app/api/transmission/', {
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -101,7 +101,7 @@ const handleSubmit = async (e) => {
   formData.append('image', payload.image); // Ensure payload.image is a File object
 
   try {
-    const response = await axios.post('http://localhost:3000/api/vehicle', formData, {
+    const response = await axios.post('https://rentan-be.vercel.app/api/vehicle', formData, {
       withCredentials: true,
       headers: {
         Authorization: `Bearer ${token}`,

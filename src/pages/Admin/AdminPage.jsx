@@ -19,7 +19,7 @@ const [data, setData] = useState([])
     const fetchData = async () => {
       try {
         console.log(token);
-        const response = await axios.get('http://localhost:3000/api/users', {
+        const response = await axios.get('https://rentan-be.vercel.app/api/users', {
           headers: {
             Authorization: `Bearer ${token}`
           },

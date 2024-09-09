@@ -48,7 +48,7 @@ const handlePlaceOrder = async() => {
     
     try {
         console.log(token);
-        const response = await axios.post('http://localhost:3000/api/transaction', { payload_sent },{
+        const response = await axios.post('https://rentan-be.vercel.app/api/transaction', { payload_sent },{
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -85,7 +85,7 @@ const handleChange = (event) => {
             <div className="car-detail">
                 <div className='car-detail-image'>
                 {/* <img src={`../${data.vehicleId.image}`} alt="car-detail"/> */}
-                <img src={`http://localhost:3000/uploads/${data.vehicleId.image}`} alt="car_img" />
+                <img src={`https://rentan-be.vercel.app/uploads/${data.vehicleId.image}`} alt="car_img" />
             </div>
                 <div className='car-detail-text'>
                 <h2> {data.vehicleId.name}</h2>
